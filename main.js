@@ -2,32 +2,40 @@ const time = document.getElementById('time');
 
 let interval = null,
 	fDate = null,
-	userTime = [0,0,0];
+	userTime = null;
 
 const getTimePart = part => part < 10 ? `0${part}` : part;
+const timeSelector = document.querySelector("button#timeSelector"),
+	pause = document.querySelector("button#pause"),
+	start = document.querySelector("button#start");
 
-document.querySelector("button#timeSelector").onclick = function(){
+timeSelector.onclick = function(){
+	if(interval) clearInterval(interval);
+	
 	userTime = [
 		parseInt(window.prompt('Enter number of hours')),
 		parseInt(window.prompt('Enter number of minutes')),
 		parseInt(window.prompt('Enter number of seconds'))
 	];
+	
 	var [hours, minutes, seconds] = userTime;
+	
 	time.innerHTML = `${getTimePart(hours)}:${getTimePart(minutes)}:${getTimePart(seconds)}`;
 }
 
-document.querySelector("button#pause").onclick = function(){
+pause.onclick = function(){
 	if(interval) clearInterval(interval);
 }
 
-document.querySelector("button#start").onclick = function(){
+start.onclick = function(){
 	if(!userTime){
-		alert('select a time');
+		alert('Please select a time');
 		return;
 	}
 	
-	fDate = addDates(userTime, new Date());
 	if(interval) clearInterval(interval);
+	
+	fDate = addDates(userTime, new Date());
 	
 	interval = setInterval(() => {
 		userTime = subtractDates(fDate, new Date());
