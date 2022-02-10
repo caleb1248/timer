@@ -1,10 +1,8 @@
 import './style.css'
-function handlePlayButtonClick() {
-  this.innerHTML = '<span class="material-icons">stop</span>'
-  this.onclick = handleStopButtonClick;
-}
-function handleStopButtonClick() {
-  this.innerHTML = '<span class="material-icons">play_arrow</span>'
-  this.onclick = handlePlayButtonClick;
-}
-document.querySelector('button.toggle').onclick = handlePlayButtonClick;
+import subtractTime from '../dateSubracter/api';
+const time = document.getElementById('time');
+var oldDate = new Date();
+setInterval(() => {
+  var [hours, minutes, seconds] = subtractTime(new Date(), oldDate)
+  time.innerHTML = `${hours}:${minutes}:${seconds}`
+}, 1000)
