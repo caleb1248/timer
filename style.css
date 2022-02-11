@@ -6,6 +6,7 @@ button#timeSelector{
 	color:white;
 	background-color: purple;
 }
+
 button#togglePlay{
 	color:white;
 	background-color: green;
@@ -14,18 +15,25 @@ button#togglePlay{
 	height: 50px;
 	border: none;
 }
+
 div#timer{
 	display: inline-block;
 	padding: 24px 32px;
 	border-radius: 20px;
 	background-color: lightgray;
 }
+
 span#time{
 	font-weight: bold;
 	font-size: 40px;
 	font-family: sans-serif;
 	margin-right: 10px;
 }
+
 button{
 	cursor: pointer;
+}
+
+audio#beep{
+	display: none;
 }

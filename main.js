@@ -6,7 +6,8 @@ let interval = null,
 
 const getTimePart = part => part < 10 ? `0${part}` : part;
 const timeSelector = document.querySelector("#timeSelector"),
-	togglePlay = document.querySelector("#togglePlay");
+	togglePlay = document.querySelector("#togglePlay"),
+	beep = document.querySelector('audio');
 
 timeSelector.onclick = function(){
 	if(interval) clearInterval(interval);
@@ -62,7 +63,11 @@ function handleStartClick(){
 		userTime = subtractDates(fDate, new Date());
 		
 		if(userTime === 'timesup'){
-			alert('Times up!');
+			beep.play();
+			setTimeout(() => {
+				beep.pause();
+				beep.currentTime = 0;
+			}, 3000);
 			showStart();
 			clearInterval(interval);
 		}
